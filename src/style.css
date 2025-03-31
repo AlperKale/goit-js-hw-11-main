@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: aqua;
+}
+
+img {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.box-div {
+  background-color: rgb(4, 78, 105);
+  position: fixed;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.search-form input {
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.02em;
+  font-size: large;
+  width: 500px;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 1px 1px rgba(0, 0, 0, 0.16),
+    0px 1px 6px rgbrgba(0, 0, 0, 0.08);
+}
+
+.search-form button {
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  padding: 5px;
+  border: 3px solid rgb(0, 0, 0);
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more {
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.02em;
+  font-size: large;
+  margin: 10px 0;
+  border: 3px solid rgb(0, 0, 0);
+}
+
+.end-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: rgb(213, 20, 20);
+  border-radius: 8px;
+  border-color: rgb(0, 0, 0);
+  border: 6px solid rgb(0, 0, 0);
+  box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  padding-top: 100px;
+  gap: 20px;
+}
+
+.photo-card {
+  background-color: rgb(20, 61, 174);
+  border-radius: 16px;
+  border-color: rgb(0, 0, 0);
+  border: 6px solid rgb(0, 0, 0);
+  box-shadow: 0px 2px 1px rgba(55, 61, 96, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+
+.photo-card img {
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0px;
+  height: 200px;
+  width: 350px;
+}
+
+.info {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px;
+  width: 350px;
+}
