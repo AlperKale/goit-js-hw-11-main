@@ -15,7 +15,7 @@ let totalHits = 0;
 hideLoadMoreBtn();
 
 searchForm.addEventListener('submit', onSearchFormSubmit);
-loadMoreBtn.addEventListener('submit', onLoadMoreBtnClick);
+loadMoreBtn.addEventListener('click', onLoadMoreBtnClick);
 
 async function onSearchFormSubmit(e) {
   e.preventDefault();
