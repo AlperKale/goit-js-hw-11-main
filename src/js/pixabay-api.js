@@ -1,24 +1,23 @@
+// // написання функції для HTTP-запитів
+
 import axios from 'axios';
 
-const API_KEY = '38229028-0b2b7d19f9e4ec7b2a7ce5afd';
-const BASE_URL = 'https://pixabay.com/api/';
+axios.defaults.baseURL = 'https://pixabay.com/api/';  // Це має бути правильно
 
-export async function fetchImages(query, page = 1, perPage = 40) {
-  const params = {
+const API_KEY = '49399736-5639b789053676a95c3f2e38d';  // Перевірити, чи ключ правильний
+
+export default function httpRequest(userRequest) {
+  const paramsForHttp = new URLSearchParams({
+    q: userRequest, 
     key: API_KEY,
-    q: query,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,
-    page: page,
-    per_page: perPage,
-  };
+  });
 
-  try {
-    const response = await axios.get(BASE_URL, { params });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching images:', error);
-    throw error;
-  }
-} 
+  return axios.get(`?${paramsForHttp}`)
+    .then(response => response.data.hits)  // Перевіряємо, чи відповідає структура даних
+    .catch(error => {
+      throw error;  // Повертати повну помилку, щоб вона була доступною в `index.js`
+    });
+}

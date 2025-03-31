@@ -1,70 +1,86 @@
+// // функції для відображення елементів інтерфейсу
+
+// ==================
+
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const gallery = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.load-more');
+export function createCart(item) {
+  const {
+    webformatURL,
+    largeImageURL,
+    tags,
+    likes,
+    views,
+    comments,
+    downloads,
+  } = item;
 
-let lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
+  return `
+    <li class="li-gallery">
+      <a class="li-gallery-a" href="${largeImageURL}">
+        <img class="img" src="${webformatURL}" alt="${tags}" />
+      </a>
+      <ul class="baner-info">
+        <li class="baner-info-li">
+          <p class="baner-info-li-title">Likes</p>
+          <p class="baner-info-li-text">${likes}</p>
+        </li>
+        <li class="baner-info-li">
+          <p class="baner-info-li-title">Views</p>
+          <p class="baner-info-li-text">${views}</p>
+        </li>
+        <li class="baner-info-li">
+          <p class="baner-info-li-title">Comments</p>
+          <p class="baner-info-li-text">${comments}</p>
+        </li>
+        <li class="baner-info-li">
+          <p class="baner-info-li-title">Downloads</p>
+          <p class="baner-info-li-text">${downloads}</p>
+        </li>
+      </ul>
+    </li>`;
+}
 
-export function renderGallery(images, append = false) {
-  const markup = images.map(image => createImageCard(image)).join('');
-  
-  if (append) {
-    gallery.insertAdjacentHTML('beforeend', markup);
-  } else {
-    gallery.innerHTML = markup;
-  }
-  
-  lightbox.refresh();
+export function createsCart(items) {
+  return items.map(createCart).join('');
 }
 
 export function clearGallery() {
-  gallery.innerHTML = '';
+  const gallery = document.querySelector('.gallery');
+  if (gallery) {
+    gallery.innerHTML = '';  // Очищаємо галерею
+  }
 }
 
-export function showLoadMoreBtn() {
-  loadMoreBtn.classList.remove('is-hidden');
-}
+export function renderGallery(data) {
+  const refs = {
+    list: document.querySelector('.gallery'),
+  };
 
-export function hideLoadMoreBtn() {
-  loadMoreBtn.classList.add('is-hidden');
-}
+  if (!refs.list) {
+    console.error('No images found');
+    return;
+  }
 
-function createImageCard({
-  webformatURL,
-  largeImageURL,
-  tags,
-  likes,
-  views,
-  comments,
-  downloads,
-}) {
-  return `
-    <div class="photo-card">
-      <a href="${largeImageURL}">
-        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-      </a>
-      <div class="info">
-        <p class="info-item">
-          <b>Likes</b>
-          ${likes}
-        </p>
-        <p class="info-item">
-          <b>Views</b>
-          ${views}
-        </p>
-        <p class="info-item">
-          <b>Comments</b>
-          ${comments}
-        </p>
-        <p class="info-item">
-          <b>Downloads</b>
-          ${downloads}
-        </p>
-      </div>
-    </div>
-  `;
-} 
+  clearGallery();
+
+  if (data.length === 0) {
+    iziToast.warning({
+      title: 'No images found',
+      message: 'Try another search term!',
+      position: 'topRight',
+    });
+    return;
+  }
+
+  const markup = createsCart(data);
+  refs.list.insertAdjacentHTML('beforeend', markup);
+
+  const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    animationSpeed: 250,
+  });
+
+  lightbox.refresh();
+}
